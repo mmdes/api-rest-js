@@ -1,6 +1,6 @@
 import Student from '../models/Student';
-
-class homeController {
+// somente um modelo a ser seguido
+class HomeController {
   async store(req, res) {
     const student = await Student.create({
       name: 'Matheus',
@@ -14,4 +14,4 @@ class homeController {
   }
 }
 
-export default new homeController();
+export default new HomeController();
