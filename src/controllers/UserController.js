@@ -64,7 +64,7 @@ class UserController {
 
   async update(req, res) {
     try {
-      const user = await User.findByPk(req.params.id);
+      const user = await User.findByPk(req.userId);
       if (!user) {
         return res.status(400).json({
           errors: ['User does not exist.'],
@@ -89,7 +89,7 @@ class UserController {
 
   async delete(req, res) {
     try {
-      const user = await User.findByPk(req.params.id);
+      const user = await User.findByPk(req.userId);
       const { id, name, email } = user;
       user.destroy();
       return res.json({ id, name, email });
