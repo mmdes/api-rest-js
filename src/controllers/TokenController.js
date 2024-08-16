@@ -5,13 +5,16 @@ class TokenController {
   async create(req, res) {
     const { email, password } = req.body;
 
+    console.log('Esses sao o email e a password recebido: ');
+    console.log(email, password);
+
     if (!email || !password) {
       return res.status(401).json({
         errors: ['Credentials are not valid.'],
       });
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ where: { email } });
 
     if (!user) {
       return res.status(401).json({

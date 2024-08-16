@@ -14,7 +14,11 @@ export default async (req, res, next) => {
 
   try {
     const data = jwt.verify(token, process.env.TOKEN_SECRET);
+
     const { id, email } = data;
+
+    // console.log('Aqui estão o id e o email decodificado do token: ');
+    // console.log(id, email);
 
     const user = User.findOne({ where: { id, email } });
 
