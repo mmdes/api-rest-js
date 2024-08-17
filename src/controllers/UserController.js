@@ -90,9 +90,8 @@ class UserController {
   async delete(req, res) {
     try {
       const user = await User.findByPk(req.userId);
-      const { id, name, email } = user;
       user.destroy();
-      return res.json({ id, name, email });
+      return res.json({ success: 'User has just been successfully deleted.' });
     } catch (e) {
       if (e.errors && e.errors.length > 0) {
         return res.status(400).json({

@@ -17,10 +17,7 @@ export default async (req, res, next) => {
 
     const { id, email } = data;
 
-    // console.log('Aqui estão o id e o email decodificado do token: ');
-    // console.log(id, email);
-
-    const user = User.findOne({ where: { id, email } });
+    const user = await User.findOne({ where: { id, email } });
 
     if (!user) {
       return res.status(401).json({
