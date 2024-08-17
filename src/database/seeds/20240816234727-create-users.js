@@ -2,7 +2,6 @@
  * @type {import('sequelize-cli').Migration} */
 
 const bcrypt = require('bcryptjs');
-const { update } = require('lodash');
 
 module.exports = {
   async up(queryInterface) {
