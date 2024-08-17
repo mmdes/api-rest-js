@@ -3,11 +3,6 @@ import Student from '../models/Student';
 class StudentController {
   async store(req, res) {
     try {
-      if (!req.body) {
-        return res.status(400).json({
-          errors: ['You must send user data.'],
-        });
-      }
       const newStudent = await Student.create(req.body);
       return res.status(200).json(newStudent);
     } catch (e) {
@@ -85,12 +80,7 @@ class StudentController {
           errors: ['Student does not exist.'],
         });
       }
-      if (!req.body) {
-        return res.status(400).json({
-          errors: ['You should send user data.'],
-        });
-      }
-      const updatedStudent = await student.update(req.json);
+      const updatedStudent = await student.update(req.body);
       return res.status(200).json(updatedStudent);
     } catch (e) {
       if (e.errors && e.errors.length > 0) {
