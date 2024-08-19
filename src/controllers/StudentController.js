@@ -1,4 +1,5 @@
 import Student from '../models/Student';
+import Photo from '../models/Photo';
 
 class StudentController {
   async store(req, res) {
@@ -21,7 +22,14 @@ class StudentController {
 
   async index(req, res) {
     try {
-      const students = await Student.findAll();
+      const students = await Student.findAll({
+        attributes: ['id', 'name', 'email', 'age', 'weight', 'height'],
+        order: [['id', 'DESC'], [Photo, 'id', 'DESC']],
+        include: {
+          model: Photo,
+          attributes: ['file_name'],
+        },
+      });
       return res.json(students);
     } catch (e) {
       if (e.errors && e.errors.length > 0) {
@@ -45,7 +53,14 @@ class StudentController {
           errors: ['Missing ID'],
         });
       }
-      const student = await Student.findByPk(id);
+      const student = await Student.findByPk(id, {
+        attributes: ['id', 'name', 'email', 'age', 'weight', 'height'],
+        order: [['id', 'DESC'], [Photo, 'id', 'DESC']],
+        include: {
+          model: Photo,
+          attributes: ['file_name'],
+        },
+      });
       if (!student) {
         return res.status(400).json({
           errors: ['Student does not exist.'],
