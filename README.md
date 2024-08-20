@@ -57,7 +57,7 @@ Siga os seguintes passos para rodar a aplicação em modo de desenvolvimento:
       npx sequelize db:migrate
       ```
 6. **Importação da Collection e Geração de token**
-   - importe a collection presente neste repositório para o Insomnia
+   - Importe a collection presente neste repositório para o Insomnia
    - Configure uma base url no base enviroment do insomnia com o host e porta que levam ao servidor onde a aplicação está rodando. Exemplo:
       ```json
        {
